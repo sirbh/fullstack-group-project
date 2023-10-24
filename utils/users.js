@@ -5,6 +5,8 @@
  * to store all data.
  */
 
+const { use } = require('chai');
+
 /**
  * Use this object to store users
  *
@@ -82,7 +84,8 @@ const getUser = (email, password) => {
  */
 const getUserById = userId => {
   // TODO: 8.4 Find user by user id
-  throw new Error('Not Implemented');
+  const user = data.users.find(user => user._id === userId);
+  return user && {...user};
 };
 
 /**
@@ -94,7 +97,13 @@ const getUserById = userId => {
 const deleteUserById = userId => {
   // TODO: 8.4 Delete user with a given id
   // Hint: Array's findIndex() with user ID can could be used to find the user, and Array's splice() method can be used to "extract" the user object.
-  throw new Error('Not Implemented');
+  const index = data.users.findIndex(user => user._id === userId);
+  
+  if (index !== -1) {
+    // splice() returns an array of the deleted element
+    const deletedUser = data.users.splice(index, 1);
+    return deletedUser[0];
+  } 
 };
 
 /**
@@ -143,7 +152,13 @@ const saveNewUser = user => {
  */
 const updateUserRole = (userId, role) => {
   // TODO: 8.4 Update user's role
-  throw new Error('Not Implemented');
+  if (role !== "customer" && role !== "admin") {
+    throw new Error("Unknown role");
+  } else {
+    const user = data.users.find(user => user._id === userId);
+    user.role = role;
+    return user && {...user}; 
+  }
 };
 
 /**

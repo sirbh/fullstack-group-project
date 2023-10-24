@@ -115,7 +115,20 @@ const handleRequest = async(request, response) => {
     // - validateUser(user) from /utils/users.js 
     // - emailInUse(user.email) from /utils/users.js
     // - badRequest(response, message) from /utils/responseUtils.js
-    throw new Error('Not Implemented');
+    try {
+      const userData = parseBodyJson(request);
+
+      if (validateUser(userData).length !== 0) {
+        return responseUtils.badRequest(response, 'Invalid user data');
+      } else if (emailInUse) {
+        return responseUtils.badRequest(response, 'Email already in use');
+      } else {
+        const newUser = saveNewUser(userData);
+        return responseUtils.sendJson(response, newUser);
+      }
+    } catch (error) {
+      return responseUtils.badRequest(response, 'Invalid request body');
+    }
   }
 };
 
