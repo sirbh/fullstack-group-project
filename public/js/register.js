@@ -1,4 +1,5 @@
 const { createNotification, postOrPutJSON } = require('./utils.js');
+const { saveNewUser } = require('../utils/users.js');
 /**
  * TODO: 8.4 Register new user
  *       - Handle registration form submission
@@ -38,6 +39,7 @@ submitButton.addEventListener('click', async function(event) {
         // Successful registration
         if (response.status === 200) {
             createNotification('Registration successful', notificationContainer, true);
+            saveNewUser(userData);
             registrationForm.reset();
         }
     } catch (error) {

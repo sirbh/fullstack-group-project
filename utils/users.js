@@ -152,10 +152,13 @@ const saveNewUser = user => {
  */
 const updateUserRole = (userId, role) => {
   // TODO: 8.4 Update user's role
-  if (role !== "customer" && role !== "admin") {
+  const user = data.users.find(user => user._id === userId);
+  
+  if (user === undefined) {
+    return undefined;
+  } else if (role !== "customer" && role !== "admin") {
     throw new Error("Unknown role");
   } else {
-    const user = data.users.find(user => user._id === userId);
     user.role = role;
     return user && {...user}; 
   }
