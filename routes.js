@@ -115,20 +115,13 @@ const handleRequest = async(request, response) => {
     // - validateUser(user) from /utils/users.js 
     // - emailInUse(user.email) from /utils/users.js
     // - badRequest(response, message) from /utils/responseUtils.js
-    try {
-      const userData = parseBodyJson(request);
-
-      if (validateUser(userData).length !== 0) {
-        return responseUtils.badRequest(response, 'Invalid user data');
-      } else if (emailInUse) {
-        return responseUtils.badRequest(response, 'Email already in use');
-      } else {
-        saveNewUser(userData);
-        return responseUtils.createdResource(response, userData);
-      }
-    } catch (error) {
-      return responseUtils.badRequest(response, 'Invalid request body');
+    const user = parseBodyJson(request);
+    if (validateUser(user).length !== 0) {
+      return responseUtils.badRequest(response, 'Invalid user data');
+    } else if (emailInUse) {
+      return responseUtils.badRequest(response, 'Email already in use');
     }
+    saveNewUser(user);
   }
 };
 

@@ -32,15 +32,10 @@ submitButton.addEventListener('click', async function(event) {
         password,
     }
 
-    try {
-        const response = await postOrPutJSON('/api/register', 'POST', userData);
+    const response = await postOrPutJSON('/api/register', 'POST', userData);
 
-        // Successful registration
-        if (response.status === 200) {
-            createNotification('Registration successful', notificationContainer, true);
-            registrationForm.reset();
-        }
-    } catch (error) {
-        createNotification('Registration failed', notificationContainer, false);
+    if (response.status === 200) {
+        createNotification('Registration successful', notificationContainer, true);
+        registrationForm.reset();
     }
 });
