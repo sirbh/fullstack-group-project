@@ -115,14 +115,14 @@ const handleRequest = async(request, response) => {
     // - validateUser(user) from /utils/users.js 
     // - emailInUse(user.email) from /utils/users.js
     // - badRequest(response, message) from /utils/responseUtils.js
-    const user = parseBodyJson(request);
+    const user = await parseBodyJson(request);
     const validationErrors = validateUser(user);
-    
-    if (validationErrors.length === 0 && !emailInUse) {
+
+    if (validationErrors.length === 0 && !emailInUse(user.email)) {
       saveNewUser(user);
       return responseUtils.createdResource(response, user);
     }
-    return responseUtils.badRequest(response, 'Invalid user Data');
+    return responseUtils.badRequest(response, 'Invalid user data');
   }
 };
 
