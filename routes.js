@@ -123,8 +123,8 @@ const handleRequest = async(request, response) => {
       } else if (emailInUse) {
         return responseUtils.badRequest(response, 'Email already in use');
       } else {
-        const newUser = saveNewUser(userData);
-        return responseUtils.createdResource(response, newUser);
+        saveNewUser(userData);
+        return responseUtils.createdResource(response, userData);
       }
     } catch (error) {
       return responseUtils.badRequest(response, 'Invalid request body');
