@@ -124,7 +124,7 @@ const handleRequest = async(request, response) => {
         return responseUtils.badRequest(response, 'Email already in use');
       } else {
         const newUser = saveNewUser(userData);
-        return responseUtils.sendJson(response, newUser);
+        return responseUtils.createdResource(response, newUser);
       }
     } catch (error) {
       return responseUtils.badRequest(response, 'Invalid request body');
