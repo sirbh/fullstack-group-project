@@ -29,7 +29,7 @@ const data = {
  */
 const resetUsers = () => {
   // make copies of users (prevents changing from outside this module/file)
-  data.users = require('../users.json').map(user => ({...user }));
+  data.users;
 };
 
 /**
@@ -69,8 +69,8 @@ const emailInUse = email => data.users.some(user => user.email === email);
  * @returns {Object|undefined}
  */
 const getUser = (email, password) => {
-  const user = data.users.find(user => user.email === email && user.password === password);
-  return user && {...user };
+  const userWithEmailPassword = data.users.find(user => user.email === email && user.password === password);
+  return userWithEmailPassword && {...userWithEmailPassword};
 };
 
 /**
@@ -84,8 +84,8 @@ const getUser = (email, password) => {
  */
 const getUserById = userId => {
   // TODO: 8.4 Find user by user id
-  const user = data.users.find(user => user._id === userId);
-  return user && {...user};
+  const userById = data.users.find(user => user._id === userId);
+  return userById && {...userById};
 };
 
 /**
@@ -152,15 +152,15 @@ const saveNewUser = user => {
  */
 const updateUserRole = (userId, role) => {
   // TODO: 8.4 Update user's role
-  const user = data.users.find(user => user._id === userId);
+  const User = data.users.find(user => user._id === userId);
   
-  if (user === undefined) {
+  if (User === undefined) {
     return undefined;
   } else if (role !== "customer" && role !== "admin") {
     throw new Error("Unknown role");
   } else {
-    user.role = role;
-    return user && {...user}; 
+    User.role = role;
+    return User && {...User}; 
   }
 };
 
