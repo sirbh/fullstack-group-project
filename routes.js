@@ -87,7 +87,8 @@ const handleRequest = async(request, response) => {
     }
 
     // No currently logged in user
-    if(!getCredentials(request)){
+    const user = await getCurrentUser(request);
+    if(!user){
       return responseUtils.basicAuthChallenge(response);
     }
 
@@ -95,10 +96,10 @@ const handleRequest = async(request, response) => {
     const urlParts = request.url.split('/');
     const userId = urlParts[urlParts.length - 1];
     // User based on id
-    const user = getUserById(userId);
+    const userById = getUserById(userId);
 
     // User not found
-    if (!user) {
+    if (!userById) {
       return responseUtils.notFound(response);
     }
 
@@ -111,14 +112,25 @@ const handleRequest = async(request, response) => {
       // ??
       return responseUtils.sendJson(response, user);
     }
-
+     
     if (request.method === 'PUT') {
       // ??
-      updateUserRole(userId, 'admin');
+     const {role} = await parseBodyJson(request);
+     if(!role){
+        return responseUtils.badRequest(response, 'Invalid user data');
+     }
+     try{
+      const updatedUser = updateUserRole(userId, role);
+      return responseUtils.sendJson(response, updatedUser);
+     }
+     catch(e){
+      return responseUtils.badRequest(response, 'Invalid user data');
+     }
     }
 
     if (request.method === 'DELETE') {
-      deleteUserById(userId);
+      const deletedUser = deleteUserById(userId);
+      return responseUtils.sendJson(response, deletedUser);
     }
   }
 

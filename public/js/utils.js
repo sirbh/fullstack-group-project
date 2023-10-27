@@ -70,9 +70,29 @@ const postOrPutJSON = async(url, method, data = {}) => {
  */
 const deleteResource = async url => {
   // TODO: 8.6 Implement this
-  return new Promise ((resolve) => {
-    
-  })
+  // return new Promise ((resolve) => {
+      
+  // })
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          // You can add other headers as needed
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to delete resource: ${response.status} - ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
 /**
