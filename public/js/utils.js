@@ -70,7 +70,9 @@ const postOrPutJSON = async(url, method, data = {}) => {
  */
 const deleteResource = async url => {
   // TODO: 8.6 Implement this
-  throw new Error('Not Implemented');
+  return new Promise ((resolve) => {
+    
+  })
 };
 
 /**

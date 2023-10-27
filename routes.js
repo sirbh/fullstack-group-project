@@ -1,7 +1,7 @@
 const responseUtils = require('./utils/responseUtils');
-const { acceptsJson, isJson, parseBodyJson } = require('./utils/requestUtils');
+const { acceptsJson, isJson, parseBodyJson, getCredentials } = require('./utils/requestUtils');
 const { renderPublic } = require('./utils/render');
-const { emailInUse, getAllUsers, saveNewUser, validateUser } = require('./utils/users');
+const { emailInUse, getAllUsers, saveNewUser, validateUser, getUserById, deleteUserById, updateUserRole } = require('./utils/users');
 const { getCurrentUser } = require('./auth/auth');
 
 /**
@@ -71,14 +71,55 @@ const handleRequest = async(request, response) => {
   if (matchUserId(filePath)) {
     // TODO: 8.6 Implement view, update and delete a single user by ID (GET, PUT, DELETE)
     // You can use parseBodyJson(request) from utils/requestUtils.js to parse request body
+
     // If the HTTP method of a request is OPTIONS you can use sendOptions(filePath, response) function from this module
     // If there is no currently logged in user, you can use basicAuthChallenge(response) from /utils/responseUtils.js to ask for credentials
-    //  If the current user's role is not admin you can use forbidden(response) from /utils/responseUtils.js to send a reply
+    // If the current user's role is not admin you can use forbidden(response) from /utils/responseUtils.js to send a reply
+
     // Useful methods here include:
     // - getUserById(userId) from /utils/users.js
     // - notFound(response) from  /utils/responseUtils.js 
     // - sendJson(response,  payload)  from  /utils/responseUtils.js can be used to send the requested data in JSON format
-    throw new Error('Not Implemented');
+
+    // HTTP method is OPTIONS
+    if (request.method === 'OPTIONS') {
+      return sendOptions(filePath, response);
+    }
+
+    // No currently logged in user
+    if(!getCredentials(request)){
+      return responseUtils.basicAuthChallenge(response);
+    }
+
+    // Last part of url is userId
+    const urlParts = request.url.split('/');
+    const userId = urlParts[urlParts.length - 1];
+    // User based on id
+    const user = getUserById(userId);
+
+    // User not found
+    if (!user) {
+      return responseUtils.notFound(response);
+    }
+
+    // If current user's role is not admin
+    if (user.role !== 'admin') {
+      return responseUtils.forbidden(response);
+    }
+
+    if (request.method === 'GET') {
+      // ??
+      return responseUtils.sendJson(response, user);
+    }
+
+    if (request.method === 'PUT') {
+      // ??
+      updateUserRole(userId, 'admin');
+    }
+
+    if (request.method === 'DELETE') {
+      deleteUserById(userId);
+    }
   }
 
   // Default to 404 Not Found if unknown url
