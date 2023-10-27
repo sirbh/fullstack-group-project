@@ -15,7 +15,7 @@ const getCurrentUser = async request => {
   if(!userData){
     return null;
   }
-  const user = getUser(userData[0], userData[1]);
+  const user = await getUser(userData[0], userData[1]);
   if(!user){
     return null;
   }
