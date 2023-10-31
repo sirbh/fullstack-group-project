@@ -3,7 +3,7 @@ const addToCart = (productId, productName) => {
   // you can use addProductToCart(), available already from /public/js/utils.js
   // for showing a notification of the product's creation, /public/js/utils.js  includes createNotification() function
   addProductToCart(productId);
-  createNotification(productName + ' added to cart','notifications-container', true);
+  createNotification(`Added ${productName} to cart!`,'notifications-container', true);
 };
 
 (async() => {
@@ -22,8 +22,12 @@ const addToCart = (productId, productName) => {
   products.forEach(product => {
     const clone = productTemplate.content.cloneNode(true);
     clone.querySelector('.product-name').innerText = product.name;
+    clone.querySelector('.product-name').id = `name-${product._id}`;
     clone.querySelector('.product-price').innerText = product.price;
+    clone.querySelector('.product-price').id = `price-${product._id}`;
     clone.querySelector('.product-description').innerText = product.description;
+    clone.querySelector('.product-description').id = `description-${product._id}`;;
+    clone.querySelector("button").id = `add-to-cart-${product._id}`;
     clone.querySelector("button").addEventListener('click', () => {
       addToCart(product._id, product.name);
     });

@@ -25,7 +25,7 @@ const updateProductAmount = productId => {
   // - change the amount of products shown in the right element's innerText
   const amount = getProductCountFromCart(productId); 
   const element = document.getElementById(productId).querySelector('.product-amount');
-  element.innerText = amount;
+  element.innerText = amount+'x';
 
 };
 
@@ -34,6 +34,13 @@ const placeOrder = async() => {
   // Get all products from the cart, /public/js/utils.js provides getAllProductsFromCart()
   // show the user a notification: /public/js/utils.js provides createNotification = (message, containerId, isSuccess = true)
   // for each of the products in the cart remove them, /public/js/utils.js provides removeElement(containerId, elementId)
+
+  const cart = getAllProductsFromCart();
+  cart.forEach(cartItem => {
+    removeElement('cart-container', cartItem.name);
+  });
+  createNotification('Successfully created an order!', 'notifications-container', true);
+
 };
 
 (async() => {
@@ -70,14 +77,18 @@ const placeOrder = async() => {
     const product = products.find(product => product._id === cartItem.name);
     clone.querySelector('.item-row').id = cartItem.name;
     clone.querySelector('.product-name').innerText = product.name;
+    clone.querySelector('.product-name').id = `name-${cartItem.name}`;
     clone.querySelector('.product-price').innerText = product.price;
-    clone.querySelector('.product-amount').innerText = cartItem.amount;
+    clone.querySelector('.product-price').id = `price-${cartItem.name}`
+    clone.querySelector('.product-amount').innerText = cartItem.amount+'x';
+    clone.querySelector('.product-amount').id = `amount-${cartItem.name}`
     clone.querySelectorAll('.cart-minus-plus-button')[1].id = `minus-${cartItem.name}`;
     clone.querySelectorAll('.cart-minus-plus-button')[0].id = `plus-${cartItem.name}`;
     clone.querySelectorAll('.cart-minus-plus-button')[1].addEventListener('click', () => decreaseCount(cartItem.name));
     clone.querySelectorAll('.cart-minus-plus-button')[0].addEventListener('click', () => addToCart(cartItem.name));
     cartContainer.appendChild(clone);
   });
-
+  
+  document.getElementById('place-order-button').addEventListener('click', placeOrder);
 
 })();
