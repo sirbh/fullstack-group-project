@@ -169,7 +169,11 @@ const addProductToCart = productId => {
   // but if productCount is defined
   //    key: productId
   //    data: productCount + 1
-  return getProductCountFromCart(productId);
+  if (!productCount) {
+    sessionStorage.setItem(productId, 1);
+  } else {
+    sessionStorage.setItem(productId, productCount + 1);
+  }
 };
 
 const decreaseProductCount = productId => {
@@ -181,14 +185,14 @@ const decreaseProductCount = productId => {
     // in the cart
     //    key: productId
     //    data: productCount - 1
-    return newCount;
+    sessionStorage.setItem(productId, productCount - 1);
   } else {
     // TODO 9.2 
     // use sessionStorage's removeItem('key') to remove 
     // the item if its count/amount drops to zero 
     // (https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage#basic_usage)
     //    key: productId
-    return 0;
+    sessionStorage.removeItem(productId);
   }
 };
 
@@ -202,6 +206,12 @@ const getProductCountFromCart = productId => {
   //    key: productId
   // Return the fetched product amount (the fetched
   //     value of the session storage item)
+  const count = sessionStorage.getItem(productId);
+  if(count){
+    return parseInt(count);
+  }
+
+  return 0;
 };
 
 const getAllProductsFromCart = () => {
@@ -220,4 +230,5 @@ const clearCart = () => {
   // items from the session storage
   // (https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage#basic_usage)
   //    key: productId
+  sessionStorage.clear();
 };

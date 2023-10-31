@@ -3,6 +3,7 @@ const { acceptsJson, isJson, parseBodyJson, getCredentials } = require('./utils/
 const { renderPublic } = require('./utils/render');
 const { emailInUse, getAllUsers, saveNewUser, validateUser, getUserById, deleteUserById, updateUserRole } = require('./utils/users');
 const { getCurrentUser } = require('./auth/auth');
+const products = require('./products.json').map(product => ({...product }));
 
 /**
  * Known API routes and their allowed methods
@@ -12,7 +13,8 @@ const { getCurrentUser } = require('./auth/auth');
  */
 const allowedMethods = {
   '/api/register': ['POST'],
-  '/api/users': ['GET']
+  '/api/users': ['GET'],
+  '/api/products': ['GET'],
 };
 
 /**
@@ -191,6 +193,16 @@ const handleRequest = async(request, response) => {
       return responseUtils.createdResource(response, savedUser);
     }
     return responseUtils.badRequest(response, 'Invalid user data');
+  }
+
+  if(filePath === '/api/products' && method.toUpperCase() === 'GET'){
+    const user = await getCurrentUser(request);
+    if(!user){
+      return responseUtils.basicAuthChallenge(response);
+    }
+
+    return responseUtils.sendJson(response, products);
+
   }
 };
 

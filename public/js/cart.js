@@ -2,19 +2,30 @@ const addToCart = productId => {
   // TODO 9.2
   // use addProductToCart(), available already from /public/js/utils.js
   // call updateProductAmount(productId) from this file
+  addProductToCart(productId);
+  updateProductAmount(productId);
+  
+
 };
 
 const decreaseCount = productId => {
   // TODO 9.2
   // Decrease the amount of products in the cart, /public/js/utils.js provides decreaseProductCount()
   // Remove product from cart if amount is 0,  /public/js/utils.js provides removeElement = (containerId, elementId
-
+  decreaseProductCount(productId);
+  if(getProductCountFromCart(productId) == 0){
+    return removeElement('cart-container', productId);
+  }
+  updateProductAmount(productId);
 };
 
 const updateProductAmount = productId => {
   // TODO 9.2
   // - read the amount of products in the cart, /public/js/utils.js provides getProductCountFromCart(productId)
   // - change the amount of products shown in the right element's innerText
+  const amount = getProductCountFromCart(productId); 
+  const element = document.getElementById(productId).querySelector('.product-amount');
+  element.innerText = amount;
 
 };
 
@@ -49,5 +60,24 @@ const placeOrder = async() => {
   //          clone.querySelector('button').addEventListener('click', () => addToCart(productId, productName));
   //
   // - in the end remember to append the modified cart item to the cart 
+
+  const cartContainer = document.getElementById('cart-container');
+  const products = await getJSON('/api/products');
+  const cart = getAllProductsFromCart();
+  const cartItemTemplate = document.getElementById('cart-item-template');
+  cart.forEach(cartItem => {
+    const clone = cartItemTemplate.content.cloneNode(true);
+    const product = products.find(product => product._id === cartItem.name);
+    clone.querySelector('.item-row').id = cartItem.name;
+    clone.querySelector('.product-name').innerText = product.name;
+    clone.querySelector('.product-price').innerText = product.price;
+    clone.querySelector('.product-amount').innerText = cartItem.amount;
+    clone.querySelectorAll('.cart-minus-plus-button')[1].id = `minus-${cartItem.name}`;
+    clone.querySelectorAll('.cart-minus-plus-button')[0].id = `plus-${cartItem.name}`;
+    clone.querySelectorAll('.cart-minus-plus-button')[1].addEventListener('click', () => decreaseCount(cartItem.name));
+    clone.querySelectorAll('.cart-minus-plus-button')[0].addEventListener('click', () => addToCart(cartItem.name));
+    cartContainer.appendChild(clone);
+  });
+
 
 })();
