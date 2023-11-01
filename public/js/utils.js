@@ -174,6 +174,7 @@ const addProductToCart = productId => {
   } else {
     sessionStorage.setItem(productId, productCount + 1);
   }
+  return getProductCountFromCart(productId);
 };
 
 const decreaseProductCount = productId => {
@@ -186,6 +187,7 @@ const decreaseProductCount = productId => {
     //    key: productId
     //    data: productCount - 1
     sessionStorage.setItem(productId, productCount - 1);
+    return productCount - 1;
   } else {
     // TODO 9.2 
     // use sessionStorage's removeItem('key') to remove 
@@ -193,6 +195,7 @@ const decreaseProductCount = productId => {
     // (https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage#basic_usage)
     //    key: productId
     sessionStorage.removeItem(productId);
+    return 0
   }
 };
 
