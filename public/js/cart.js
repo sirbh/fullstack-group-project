@@ -40,7 +40,7 @@ const placeOrder = async() => {
     removeElement('cart-container', cartItem.name);
   });
   createNotification('Successfully created an order!', 'notifications-container', true);
-
+  clearCart();
 };
 
 (async() => {

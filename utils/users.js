@@ -29,7 +29,7 @@ const data = {
  */
 const resetUsers = () => {
   // make copies of users (prevents changing from outside this module/file)
-  data.users;
+  data.users=require('../users.json').map(user => ({...user }));
 };
 
 /**
