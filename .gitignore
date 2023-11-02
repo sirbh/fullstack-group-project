@@ -145,9 +145,5 @@ docker-compose.override.yml
 # local configuration files
 config/local*.*
 
-# mocha reports
+#mocha reports
 mochawesome-report
-
-# exclude the .env file to prevent sensitive information
-# from being committed
-.env
