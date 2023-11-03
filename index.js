@@ -1,6 +1,9 @@
 require('dotenv').config();
 const http = require('http');
 const { handleRequest } = require('./routes');
+const {connectDB} = require('./models/db');
+
+connectDB();
 
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(handleRequest);
