@@ -1,8 +1,8 @@
 const responseUtils = require('./utils/responseUtils');
 const { acceptsJson, isJson, parseBodyJson, getCredentials } = require('./utils/requestUtils');
 const { renderPublic } = require('./utils/render');
-const { emailInUse, getAllUsers, saveNewUser, validateUser, getUserById, deleteUserById, updateUserRole } = require('./utils/users');
 const { getCurrentUser } = require('./auth/auth');
+const User = require('./models/user');
 const products = require('./products.json').map(product => ({...product }));
 
 /**
@@ -98,7 +98,7 @@ const handleRequest = async(request, response) => {
     const urlParts = request.url.split('/');
     const userId = urlParts[urlParts.length - 1];
     // User based on id
-    const userById = getUserById(userId);
+    const userById = await User.findById(userId);
 
     // User not found
     if (!userById) {
@@ -122,7 +122,8 @@ const handleRequest = async(request, response) => {
         return responseUtils.badRequest(response, 'Invalid user data');
      }
      try{
-      const updatedUser = updateUserRole(userId, role);
+      userById.role = role;
+      const updatedUser = await userById.save();
       return responseUtils.sendJson(response, updatedUser);
      }
      catch(e){
@@ -131,7 +132,7 @@ const handleRequest = async(request, response) => {
     }
 
     if (request.method === 'DELETE') {
-      const deletedUser = deleteUserById(userId);
+      const deletedUser = await User.findByIdAndRemove(userId);
       return responseUtils.sendJson(response, deletedUser);
     }
   }
@@ -165,7 +166,8 @@ const handleRequest = async(request, response) => {
     if(user.role === 'customer'){
       return responseUtils.forbidden(response);
     }
-    return responseUtils.sendJson(response, getAllUsers());
+    const users = await User.find({});
+    return responseUtils.sendJson(response, users);
   }
 
   // register new user
@@ -187,12 +189,17 @@ const handleRequest = async(request, response) => {
       email,
       password
     };
-    const validationErrors = validateUser(user);
-    if (validationErrors.length === 0 && !emailInUse(user.email)) {
-      const savedUser = saveNewUser(user);
+    try {
+      const newUser = new User(user);
+  
+      await newUser.validate(); // Explicitly validate the data against the schema
+  
+      const savedUser = await newUser.save();
       return responseUtils.createdResource(response, savedUser);
+    } catch (error) {
+      // Handle validation or save errors
+      return responseUtils.badRequest(response, 'Invalid user data');
     }
-    return responseUtils.badRequest(response, 'Invalid user data');
   }
 
   if(filePath === '/api/products' && method.toUpperCase() === 'GET'){
