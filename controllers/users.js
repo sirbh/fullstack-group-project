@@ -1,11 +1,21 @@
+const {
+  removeUser,
+  findUserById,
+  findAllUsers,
+  updateUserDetails,
+  saveUser
+} = require("../utils/dbUtils");
+const responseUtils = require("../utils/responseUtils");
+
 /**
  * Send all users as JSON
  *
  * @param {http.ServerResponse} response
  */
-const getAllUsers = async response => {
+const getAllUsers = async (response) => {
   // TODO: 10.2 Implement this
-  throw new Error('Not Implemented');
+  const users = await findAllUsers();
+  return responseUtils.sendJson(response, users);
 };
 
 /**
@@ -15,9 +25,25 @@ const getAllUsers = async response => {
  * @param {string} userId
  * @param {Object} currentUser (mongoose document object)
  */
-const deleteUser = async(response, userId, currentUser) => {
+const deleteUser = async (response, userId, currentUser) => {
   // TODO: 10.2 Implement this
-  throw new Error('Not Implemented');
+  const userById = await findUserById(userId);
+
+  // User not found
+  if (!userById) {
+    return responseUtils.notFound(response);
+  }
+  // console.log(currentUser);
+  // If current user's role is not admin
+  if (currentUser.role !== "admin") {
+    return responseUtils.forbidden(response);
+  }
+
+  if (currentUser._id.toString() === userId) {
+    return responseUtils.badRequest(response, "Cannot delete yourself");
+  }
+  const deletedUser = await removeUser(userId);
+  return responseUtils.sendJson(response, deletedUser);
 };
 
 /**
@@ -28,9 +54,38 @@ const deleteUser = async(response, userId, currentUser) => {
  * @param {Object} currentUser (mongoose document object)
  * @param {Object} userData JSON data from request body
  */
-const updateUser = async(response, userId, currentUser, userData) => {
+const updateUser = async (response, userId, currentUser, userData) => {
   // TODO: 10.2 Implement this
-  throw new Error('Not Implemented');
+  const userById = await findUserById(userId);
+
+  // User not found
+  if (!userById) {
+    return responseUtils.notFound(response);
+  }
+  // console.log(currentUser);
+  // If current user's role is not admin
+  if (currentUser.role !== "admin") {
+    return responseUtils.forbidden(response);
+  }
+
+  if (currentUser._id.toString() === userId) {
+    return responseUtils.badRequest(
+      response,
+      "Updating own data is not allowed"
+    );
+  }
+  const { role } = userData;
+  if (!role) {
+    return responseUtils.badRequest(response, "Invalid user data");
+  }
+
+  userById.role = role;
+  const updatedUser = await updateUserDetails(userById);
+  if (updatedUser) {
+    return responseUtils.sendJson(response, updatedUser);
+  } else {
+    return responseUtils.badRequest(response, "Invalid user data");
+  }
 };
 
 /**
@@ -40,9 +95,16 @@ const updateUser = async(response, userId, currentUser, userData) => {
  * @param {string} userId
  * @param {Object} currentUser (mongoose document object)
  */
-const viewUser = async(response, userId, currentUser) => {
+const viewUser = async (response, userId, currentUser) => {
   // TODO: 10.2 Implement this
-  throw new Error('Not Implemented');
+  if (currentUser.role !== 'admin') {
+    return responseUtils.forbidden(response);
+  }
+  const user = await findUserById(userId);
+  if (!user) {
+    return responseUtils.notFound(response);
+  }
+  return responseUtils.sendJson(response, user);
 };
 
 /**
@@ -51,9 +113,35 @@ const viewUser = async(response, userId, currentUser) => {
  * @param {http.ServerResponse} response
  * @param {Object} userData JSON data from request body
  */
-const registerUser = async(response, userData) => {
+const registerUser = async (response, userData) => {
   // TODO: 10.2 Implement this
-  throw new Error('Not Implemented');
+
+  // try {
+  //   const newUser = new User({ ...userData, role: "customer" });
+
+  //   await newUser.validate(); // Explicitly validate the data against the schema
+
+  //   const savedUser = await newUser.save();
+  //   return responseUtils.createdResource(response, savedUser);
+  // } catch (error) {
+  //   // Handle validation or save errors
+  //   return responseUtils.badRequest(response, "Invalid user data");
+  // }
+
+  
+  const savedUser = await saveUser(userData);
+  if(savedUser){
+    return responseUtils.createdResource(response, savedUser);
+  }
+  else{
+    return responseUtils.badRequest(response, "Invalid user data");
+  }
 };
 
-module.exports = { getAllUsers, registerUser, deleteUser, viewUser, updateUser };
+module.exports = {
+  getAllUsers,
+  registerUser,
+  deleteUser,
+  viewUser,
+  updateUser,
+};
