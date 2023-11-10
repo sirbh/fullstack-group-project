@@ -36,19 +36,19 @@ const resetUsers = () => {
  * Generate a random string for use as user ID
  * @returns {string}
  */
-const generateId = () => {
-  let id;
+// const generateId = () => {
+//   let id;
 
-  do {
-    // Generate unique random id that is not already in use
-    // Shamelessly borrowed from a Gist. See:
-    // https://gist.github.com/gordonbrander/2230317
+//   do {
+//     // Generate unique random id that is not already in use
+//     // Shamelessly borrowed from a Gist. See:
+//     // https://gist.github.com/gordonbrander/2230317
 
-    id = Math.random().toString(36).substr(2, 9);
-  } while (data.users.some(u => u._id === id));
+//     id = Math.random().toString(36).substr(2, 9);
+//   } while (data.users.some(u => u._id === id));
 
-  return id;
-};
+//   return id;
+// };
 
 /**
  * Check if email is already in use by another user

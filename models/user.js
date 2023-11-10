@@ -70,7 +70,7 @@ const userSchema = new Schema({
         throw new Error('Password is too short');
       }
       const encryptedPassword = bcrypt.hashSync(password, 10);
-      return encryptedPassword
+      return encryptedPassword;
     }
   },
 
