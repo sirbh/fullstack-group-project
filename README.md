@@ -8,9 +8,9 @@ What should be in this document is detailed in the 11th exercise round assignmen
 
 Member1:  Saurabh Chauhan, saurabh.chauhan@tuni.fi, 150917632, 
 resposible for: 
-Task-`8.5`,`9.2`,`9.6`,`10.3`,`10.4`,`11.1`
-Moreover worked on both API and Frontend related tasks
-Fixed bugs,created issues,created PRs,reviewed PRs.
+- Task-`8.5`,`9.2`,`9.6`,`10.3`,`10.4`,`11.1`
+- Moreover worked on both API and Frontend related tasks
+- Fixed bugs,created issues,created PRs,reviewed PRs.
 
 Member2:  name, email, student ID, 
 resposible for: TODO, short description of duties 
@@ -27,7 +27,16 @@ resposible for: TODO, short description of duties
 TODO: A table with links to at least 10 of your group's GitLab issues, listed with their associated Mocha tests and test files.
 | Issues      | Test          |
 | ------------- |:-------------:|
-| [save user to database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/17)      |  | 
+| [save user to database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/17)      |  |
+| [remove user from database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/14)      |  |
+| [update user from database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/15)      |  |
+| [get all the user](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/16)      |  |
+| [add route /api/products/{id}](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/21)      |  |
+| [add route POST /api/products](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/22)      |  |
+| [add route GET /api/orders](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/23)      |  |
+| [add route GET api/orders/{id}](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/24)      |  |
+| [add route POST /api/orders](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/25)      |  |
+ 
 
 
 ## Security concerns
