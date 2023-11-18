@@ -1,3 +1,4 @@
+const Product = require("../models/product");
 const { getProductsJson } = require("../utils/product");
 const responseUtils = require("../utils/responseUtils");
 
@@ -8,7 +9,7 @@ const responseUtils = require("../utils/responseUtils");
  */
 const getAllProducts = async response => {
   // TODO: 10.2 Implement this
-  const products = getProductsJson();
+  const products = await Product.find({});
   return responseUtils.sendJson(response, products);
 };
 
