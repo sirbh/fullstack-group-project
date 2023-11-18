@@ -50,10 +50,10 @@ You are also free to add more security threats + protection here, if you will.
 
 A git branch should start with a category. Pick one of these: `feature`, `bugfix`, `hotfix`, or `test`.
 
-eg. `git branch <category>/<ticket heading on board>-<ticket no. on borad>`
+eg. `git branch <category>/<ticket no. on borad>-<ticket heading on board>`
 
-* If you need to add a feature: `git branch feature/add-event-listner-42`.
-* If you need to fix a bug: `git branch bugfix/button-not-displaying-342`
+* If you need to add a feature: `git branch feature/42-add-event-listner`.
+* If you need to fix a bug: `git branch bugfix/345-button-not-displaying`
 * If you need to fix a bug really fast (possibly with a temporary solution): `git branch hotfix/registration-form-not-working-232`
 * If you need to experiment outside of an issue/ticket: `git branch test/http-client`
 
