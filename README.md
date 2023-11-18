@@ -27,7 +27,7 @@ resposible for: TODO, short description of duties
 TODO: A table with links to at least 10 of your group's GitLab issues, listed with their associated Mocha tests and test files.
 | Issues      | Test          |
 | ------------- |:-------------:|
-| [save user to database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/17)      |  |
+| [save user to database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/17)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blame/main/test/own/dbUtils.test.js#L26) |
 | [remove user from database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/14)      |  |
 | [update user from database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/15)      |  |
 | [get all the user](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/16)      |  |
@@ -36,6 +36,7 @@ TODO: A table with links to at least 10 of your group's GitLab issues, listed wi
 | [add route GET /api/orders](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/23)      |  |
 | [add route GET api/orders/{id}](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/24)      |  |
 | [add route POST /api/orders](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/25)      |  |
+| [Add user controllers to simplfy routes.js](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/9)      |  |
  
 
 
