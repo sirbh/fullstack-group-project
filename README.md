@@ -6,8 +6,11 @@ What should be in this document is detailed in the 11th exercise round assignmen
 
 # Group 
 
-Member1:  name, email, student ID, 
-resposible for: TODO, short description of duties 
+Member1:  Saurabh Chauhan, saurabh.chauhan@tuni.fi, 150917632, 
+resposible for: 
+Task-`8.5`,`9.2`,`9.6`,`10.3`,`10.4`,`11.1`
+Moreover worked on both API and Frontend related tasks
+Fixed bugs,created issues,created PRs,reviewed PRs.
 
 Member2:  name, email, student ID, 
 resposible for: TODO, short description of duties 
@@ -22,6 +25,10 @@ resposible for: TODO, short description of duties
 ## Tests and documentation
 
 TODO: A table with links to at least 10 of your group's GitLab issues, listed with their associated Mocha tests and test files.
+| Issues      | Test          |
+| ------------- |:-------------:|
+| [save user to database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/17)      |  | 
+
 
 ## Security concerns
 
