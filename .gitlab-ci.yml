@@ -10,5 +10,5 @@ MochaTests:
   script:
     - /usr/local/bin/start-mongo.sh
     - npm install
-    - npm run test-own
+    - npm run test
   timeout: "600"
