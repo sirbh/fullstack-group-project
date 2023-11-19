@@ -54,7 +54,7 @@ const resetUsers = () => {
 /**
  * Check if email is already in use by another user
  *
- * @param {string} email the new email to check
+ * @param {string} email - the new email to check
  * @returns {boolean} true if email is already in use, false if not 
  */
 const emailInUse = email => data.users.some(user => user.email === email);
@@ -65,8 +65,8 @@ const emailInUse = email => data.users.some(user => user.email === email);
  * Returns a copy of the found user and not the original
  * to prevent modifying the user outside of this module.
  *
- * @param {string} email given user's email
- * @param {string} password given user's password
+ * @param {string} email - given user's email
+ * @param {string} password - given user's password
  * @returns {object|undefined} user with the matching email and password, or undefined if not found
  */
 const getUser = (email, password) => {
@@ -80,7 +80,7 @@ const getUser = (email, password) => {
  * Returns a copy of the user and not the original
  * to prevent modifying the user outside of this module.
  *
- * @param {string} userId given user ID to be matched
+ * @param {string} userId - given user ID to be matched
  * @returns {object|undefined} user with matching ID, or undefined if no user is found
  */
 const getUserById = userId => {
@@ -92,7 +92,7 @@ const getUserById = userId => {
 /**
  * Delete user by its ID and return the deleted user
  *
- * @param {string} userId user ID of user to be deleted
+ * @param {string} userId - user ID of user to be deleted
  * @returns {object|undefined} deleted user or undefined if user does not exist
  */
 const deleteUserById = userId => {
@@ -126,7 +126,7 @@ const getAllUsers = () => data.users.map(user => ({...user }));
  *
  * DO NOT MODIFY OR OVERWRITE users.json
  *
- * @param {object} user the newly created user
+ * @param {object} user - the newly created user
  * @returns {object} copy of the created user
  */
 const saveNewUser = user => {
@@ -171,7 +171,7 @@ const updateUserRole = (userId, role) => {
  * This function can be used to validate that user has all required
  * fields before saving it.
  *
- * @param {object} user user object to be validated
+ * @param {object} user - User object to be validated
  * @returns {Array<string>} Array of error messages, or empty array if user is valid. 
  */
 const validateUser = user => {
