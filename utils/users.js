@@ -34,6 +34,7 @@ const resetUsers = () => {
 
 /**
  * Generate a random string for use as user ID
+ * 
  * @returns {string}
  */
 // const generateId = () => {
@@ -53,8 +54,8 @@ const resetUsers = () => {
 /**
  * Check if email is already in use by another user
  *
- * @param {string} email
- * @returns {boolean}
+ * @param {string} email the new email to check
+ * @returns {boolean} true if email is already in use, false if not 
  */
 const emailInUse = email => data.users.some(user => user.email === email);
 
@@ -64,9 +65,9 @@ const emailInUse = email => data.users.some(user => user.email === email);
  * Returns a copy of the found user and not the original
  * to prevent modifying the user outside of this module.
  *
- * @param {string} email
- * @param {string} password
- * @returns {Object|undefined}
+ * @param {string} email given user's email
+ * @param {string} password given user's password
+ * @returns {object|undefined} user with the matching email and password, or undefined if not found
  */
 const getUser = (email, password) => {
   const userWithEmailPassword = data.users.find(user => user.email === email && user.password === password);
@@ -79,8 +80,8 @@ const getUser = (email, password) => {
  * Returns a copy of the user and not the original
  * to prevent modifying the user outside of this module.
  *
- * @param {string} userId
- * @returns {Object|undefined}
+ * @param {string} userId given user ID to be matched
+ * @returns {object|undefined} user with matching ID, or undefined if no user is found
  */
 const getUserById = userId => {
   // TODO: 8.4 Find user by user id
@@ -91,8 +92,8 @@ const getUserById = userId => {
 /**
  * Delete user by its ID and return the deleted user
  *
- * @param {string} userId
- * @returns {Object|undefined} deleted user or undefined if user does not exist
+ * @param {string} userId user ID of user to be deleted
+ * @returns {object|undefined} deleted user or undefined if user does not exist
  */
 const deleteUserById = userId => {
   // TODO: 8.4 Delete user with a given id
@@ -112,7 +113,7 @@ const deleteUserById = userId => {
  * Returns copies of the users and not the originals
  * to prevent modifying them outside of this module.
  *
- * @returns {Array<Object>} all users
+ * @returns {Array<object>} includes all users
  */
 const getAllUsers = () => data.users.map(user => ({...user }));
 
@@ -125,8 +126,8 @@ const getAllUsers = () => data.users.map(user => ({...user }));
  *
  * DO NOT MODIFY OR OVERWRITE users.json
  *
- * @param {Object} user
- * @returns {Object} copy of the created user
+ * @param {object} user the newly created user
+ * @returns {object} copy of the created user
  */
 const saveNewUser = user => {
   // Use generateId() to assign a unique id to the newly created user.
@@ -145,9 +146,9 @@ const saveNewUser = user => {
  * Returns a copy of the user and not the original
  * to prevent modifying the user outside of this module.
  *
- * @param {string} userId
+ * @param {string} userId - current users id
  * @param {string} role "customer" or "admin"
- * @returns {Object|undefined} copy of the updated user or undefined if user does not exist
+ * @returns {object|undefined} copy of the updated user, or undefined if user does not exist
  * @throws {Error} error object with message "Unknown role"
  */
 const updateUserRole = (userId, role) => {
@@ -170,8 +171,8 @@ const updateUserRole = (userId, role) => {
  * This function can be used to validate that user has all required
  * fields before saving it.
  *
- * @param {Object} user user object to be validated
- * @returns {Array<string>} Array of error messages or empty array if user is valid. 
+ * @param {object} user user object to be validated
+ * @returns {Array<string>} Array of error messages, or empty array if user is valid. 
  */
 const validateUser = user => {
   const errors = [];
