@@ -4,8 +4,8 @@ const { getCredentials } = require('../utils/requestUtils');
 /**
  * Get current user based on the request headers
  *
- * @param {http.IncomingMessage} request
- * @returns {Object|null} current authenticated user or null if not yet authenticated
+ * @param {http.IncomingMessage} request  - Takes the request object containing headers as an parameter
+ * @returns {object|null} current authenticated user or null if not yet authenticated
  */
 const getCurrentUser = async request => {
   // TODO: 8.5 Implement getting current user based on the "Authorization" request header
