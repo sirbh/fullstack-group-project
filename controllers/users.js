@@ -10,7 +10,8 @@ const responseUtils = require("../utils/responseUtils");
 /**
  * Send all users as JSON
  *
- * @param {http.ServerResponse} response
+ * @param {http.ServerResponse} response - the server response object
+ * @returns {object} all users as JSON
  */
 const getAllUsers = async (response) => {
   // TODO: 10.2 Implement this
@@ -21,9 +22,10 @@ const getAllUsers = async (response) => {
 /**
  * Delete user and send deleted user as JSON
  *
- * @param {http.ServerResponse} response
- * @param {string} userId
- * @param {Object} currentUser (mongoose document object)
+ * @param {http.ServerResponse} response - server response object
+ * @param {string} userId - ID of user to be deleted
+ * @param {object} currentUser - (mongoose document object)
+ * @returns {object} deleted user as JSON
  */
 const deleteUser = async (response, userId, currentUser) => {
   // TODO: 10.2 Implement this
@@ -49,10 +51,11 @@ const deleteUser = async (response, userId, currentUser) => {
 /**
  * Update user and send updated user as JSON
  *
- * @param {http.ServerResponse} response
- * @param {string} userId
- * @param {Object} currentUser (mongoose document object)
- * @param {Object} userData JSON data from request body
+ * @param {http.ServerResponse} response - the server response object
+ * @param {string} userId - ID of the user to be updated
+ * @param {object} currentUser (mongoose document object)
+ * @param {object} userData JSON data from request body
+ * @returns {object} updated user as JSON
  */
 const updateUser = async (response, userId, currentUser, userData) => {
   // TODO: 10.2 Implement this
@@ -91,9 +94,10 @@ const updateUser = async (response, userId, currentUser, userData) => {
 /**
  * Send user data as JSON
  *
- * @param {http.ServerResponse} response
- * @param {string} userId
- * @param {Object} currentUser (mongoose document object)
+ * @param {http.ServerResponse} response - the server response object
+ * @param {string} userId - ID of user
+ * @param {object} currentUser (mongoose document object)
+ * @returns {object} data of user
  */
 const viewUser = async (response, userId, currentUser) => {
   // TODO: 10.2 Implement this
@@ -110,8 +114,9 @@ const viewUser = async (response, userId, currentUser) => {
 /**
  * Register new user and send created user back as JSON
  *
- * @param {http.ServerResponse} response
- * @param {Object} userData JSON data from request body
+ * @param {http.ServerResponse} response - the server response object
+ * @param {object} userData - JSON data from request body
+ * @returns {object} newly created user as JSON
  */
 const registerUser = async (response, userData) => {
   // TODO: 10.2 Implement this
@@ -127,7 +132,6 @@ const registerUser = async (response, userData) => {
   //   // Handle validation or save errors
   //   return responseUtils.badRequest(response, "Invalid user data");
   // }
-
   
   const savedUser = await saveUser(userData);
   if(savedUser){
