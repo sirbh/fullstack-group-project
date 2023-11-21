@@ -65,7 +65,8 @@ Below is a simplified UML diagram of the projects structure and components.
 
 ## Pages and navigation
 
-Below is a diagram showing the pages and navigation paths with them. 
+Below is a diagram showing the pages and navigation paths with them. Also, the user is always shown the navigation bar with links to each page, so the user can alternatively navigate through that to which page ever. For a clearer diagram, the navigation bar paths are not shown on the diagram.
+![A diagram of the pages in the project and their navigation paths](/documentation/pages_and_navigation.png)
 
 ## Data models
 
