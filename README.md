@@ -1,7 +1,5 @@
 # Web Development 1 group work repository for a web shop
 
-# WebDev1 group work assignment, rounds 8-11
-
 This is a project for the course Web Development 1 in Tampere University. The project is an implementation of a simple web shop. 
 
 # Group 
