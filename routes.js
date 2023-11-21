@@ -29,7 +29,7 @@ const Order = require("./models/order");
 const allowedMethods = {
   "/api/register": ["POST"],
   "/api/users": ["GET"],
-  "/api/products": ["GET","POST"],
+  "/api/products": ["GET", "POST"],
   "/api/orders": ["GET", "POST"],
 };
 
@@ -186,7 +186,7 @@ const handleRequest = async (request, response) => {
         const updatedProduct = await Product.findOneAndUpdate(
           { _id: productId },
           productDetails,
-          { new: true,runValidators: true }
+          { new: true, runValidators: true }
         );
         if (updatedProduct) {
           return responseUtils.sendJson(response, updatedProduct);
@@ -463,17 +463,6 @@ if (filePath === "/api/orders" && method.toUpperCase() === "POST") {
       return responseUtils.badRequest(response, "Invalid order data");
     }
   });
-  /*for (const item of orderDetails.items) {
-    if (!item.product || !item.quantity || typeof item.quantity !== 'number') {
-      return responseUtils.badRequest(response, "Invalid order data");
-    }
-
-    const { product } = item;
-
-    if (!product._id || !product.name || !product.price || typeof product.price !== 'number') {
-      return responseUtils.badRequest(response, "Invalid order data");
-    }
-  }*/
 
   try {
     const order = new Order({ customerId:user._id, items:orderDetails.items });
