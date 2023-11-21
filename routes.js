@@ -452,7 +452,7 @@ if (filePath === "/api/orders" && method.toUpperCase() === "POST") {
     return responseUtils.badRequest(response, "Invalid order data");
   }
 
-  for (const item of orderDetails.items) {
+  orderDetails.items.every(item => {
     if (!item.product || !item.quantity || typeof item.quantity !== 'number') {
       return responseUtils.badRequest(response, "Invalid order data");
     }
@@ -462,7 +462,18 @@ if (filePath === "/api/orders" && method.toUpperCase() === "POST") {
     if (!product._id || !product.name || !product.price || typeof product.price !== 'number') {
       return responseUtils.badRequest(response, "Invalid order data");
     }
-  }
+  });
+  /*for (const item of orderDetails.items) {
+    if (!item.product || !item.quantity || typeof item.quantity !== 'number') {
+      return responseUtils.badRequest(response, "Invalid order data");
+    }
+
+    const { product } = item;
+
+    if (!product._id || !product.name || !product.price || typeof product.price !== 'number') {
+      return responseUtils.badRequest(response, "Invalid order data");
+    }
+  }*/
 
   try {
     const order = new Order({ customerId:user._id, items:orderDetails.items });
