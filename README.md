@@ -16,8 +16,7 @@ Member2:  Julia Varjamo, julia.varjamo@tuni.fi, 150287553,
 resposible for: 
 - Tasks: `8.2`, `8.4`, `9.4`, `10.2`, `11.6`
 - Worked on tasks such as user registration and connecting to the URL
-- as well as tasks relating to other project matters, for example setting up
-- the repository and managing issues. 
+- as well as tasks relating to other project matters, for example setting up the repository, managing issues and documentation. 
 
 Member2:  Laura Karjalainen, email, student ID, 
 resposible for: TODO, short description of duties
@@ -63,9 +62,12 @@ npm test
 
 Below is a simplified UML diagram of the projects structure and components.
 
+![A simple sequence diagram of the project structure](/documentation/project_structure.png)
+
 ## Pages and navigation
 
 Below is a diagram showing the pages and navigation paths with them. Also, the user is always shown the navigation bar with links to each page, so the user can alternatively navigate through that to which page ever. For a clearer diagram, the navigation bar paths are not shown on the diagram.
+
 ![A diagram of the pages in the project and their navigation paths](/documentation/pages_and_navigation.png)
 
 ## Data models
