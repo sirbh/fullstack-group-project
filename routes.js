@@ -452,18 +452,23 @@ if (filePath === "/api/orders" && method.toUpperCase() === "POST") {
     return responseUtils.badRequest(response, "Invalid order data");
   }
 
-  orderDetails.items.every(item => {
+  const isDetailsCorrect = orderDetails.items.every(item => {
     if (!item.product || !item.quantity || typeof item.quantity !== 'number') {
-      return responseUtils.badRequest(response, "Invalid order data");
+      return false;
     }
 
     const { product } = item;
 
     if (!product._id || !product.name || !product.price || typeof product.price !== 'number') {
-      return responseUtils.badRequest(response, "Invalid order data");
+      return false;
     }
-  });
 
+    return true;
+  });
+   
+  if(!isDetailsCorrect){
+       return responseUtils.badRequest(response, "Invalid order data");
+  }
   try {
     const order = new Order({ customerId:user._id, items:orderDetails.items });
     await order.save();
