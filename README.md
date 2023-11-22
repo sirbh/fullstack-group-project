@@ -18,7 +18,7 @@ resposible for:
 
 Member3:  Laura Karjalainen, laura.k.karjalainen@tuni.fi, 151048212, 
 resposible for: 
-- Tasks `8.6`,`8.7`,`9.5`,`10.5`,`11.4`
+- Tasks `8.6`,`8.7`,`9.5`,`10.5`,`11.4`, `11.5`
 - Worked on tasks such as Mongoose Schema and Setting up CI pipeline
 - Fixed errors and warnings from ESLint (also JSDoc), working with issues and defined jobs for CD pipeline
 
