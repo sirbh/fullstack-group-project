@@ -10,12 +10,6 @@ This is a project for the course Web Development 1 in Tampere University. The pr
 
 For running this project, make sure you have Node and Git installed locally.
 
-### Cloning the project
-
-Clone the project with the command (using SSH key): 
-```
-git clone git@course-gitlab.tuni.fi:webdev1-fall-2023-groupwork/webdev1-fall2023-group053.git
-```
 
 ## Running the project
 
@@ -111,19 +105,3 @@ Listed below are the common vulnerabilities of a web application and how this ap
     - Input is sanitized. 
 - Cross-Site Request Forgery
 
-## Testing
-
-Below shown in the table are the links to our GitLab issues, with their associated Mocha tests and test files. 
-
-| Issues      | Test          |
-| ------------- |:-------------:|
-| [save user to database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/17)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blame/main/test/own/dbUtils.test.js#L42) |
-| [remove user from database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/14)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blame/main/test/own/dbUtils.test.js#L71)|
-| [update user from database](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/15)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blame/main/test/own/dbUtils.test.js#L89)|
-| [find user by id](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/13)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blame/main/test/own/dbUtils.test.js#L26)|
-| [add route /api/products/{id}](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/21)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blob/main/test/routes.test.js#L877)|
-| [add route POST /api/products](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/22)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blob/main/test/routes.test.js#L1272)|
-| [add route GET /api/orders](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/23)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blob/main/test/routes.test.js#L1420)|
-| [add route GET api/orders/{id}](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/24)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blob/main/test/routes.test.js#L1543)|
-| [add route POST /api/orders](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/25)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/blob/main/test/routes.test.js#L1659)|
-| [Add user controllers to simplfy routes.js](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/issues/9)      | [Test](https://course-gitlab.tuni.fi/webdev1-fall-2023-groupwork/webdev1-fall2023-group053/-/tree/main/test/controllers)|
