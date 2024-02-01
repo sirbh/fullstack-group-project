@@ -2,26 +2,6 @@
 
 This is a project for the course Web Development 1 in Tampere University. The project is an implementation of a simple web shop. 
 
-# Group 
-
-Member1:  Saurabh Chauhan, saurabh.chauhan@tuni.fi, 150917632, 
-resposible for: 
-- Tasks: `8.5`, `9.2`, `9.6`, `10.3`, `10.4`, `11.1`
-- Moreover worked on both API and Frontend related tasks
-- Fixed bugs,created issues,created PRs,reviewed PRs.
-
-Member2:  Julia Varjamo, julia.varjamo@tuni.fi, 150287553, 
-resposible for: 
-- Tasks: `8.2`, `8.4`, `9.4`, `10.2`, `11.6`
-- Worked on tasks such as user registration and connecting to the URL
-- as well as tasks relating to other project matters, for example setting up the repository, managing issues and documentation. 
-
-Member3:  Laura Karjalainen, laura.k.karjalainen@tuni.fi, 151048212, 
-resposible for: 
-- Tasks `8.6`,`8.7`,`9.5`,`10.5`,`11.4`, `11.5`
-- Worked on tasks such as Mongoose Schema and Setting up CI pipeline
-- Fixed errors and warnings from ESLint (also JSDoc), working with issues and defined jobs for CD pipeline
-
 # Instructions 
 
 ## Installation
